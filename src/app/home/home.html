@@ -1,0 +1,54 @@
+<div class="container">
+    <button class="btn btn-outline-primary float-end mt-5" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Products</button>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">{{
+        isEdit ? 'Edit Product' : 'Add Product' }}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex flex-column">
+            <div class="my-2">
+                <label for="">Product name</label>
+                <input [(ngModel)]="productName" type="text" placeholder="Product Name" class="form-control">
+            </div>
+            <div class="my-2">
+                <label for="">Product Rate</label>
+                <input [(ngModel)]="productRate" type="text" placeholder="Product Rate" class="form-control">
+            </div>
+            <div class="my-2">
+                <label for="">Product Description</label>
+                <input [(ngModel)]="productDescription" type="text" placeholder="Product Description" class="form-control">
+            </div>
+            <!-- <button class="btn btn-success" >Add Product</button> -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button (click)="addProduct()" type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-5">
+  @for (item of productData(); track $index) {
+    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 mt-3">
+      <div class="card p-3" style="width: 100%;">
+        <div class="card-body">
+          <h5 class="card-title">{{item.productName}}</h5>
+          <p class="card-text">{{item.productDescription}}</p>
+          <h6>Rate : {{item.productRate}} </h6>
+        </div>
+        <div class="d-flex justify-content-evenly">
+          <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-warning" (click)="getAProduct(item._id)">Edit</button>
+          <button class="btn btn-danger">Delete</button>
+        </div>
+      </div>
+    </div>
+  }
+</div>
