@@ -5,7 +5,7 @@ import { inject, Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class Api {
-  server_URL = "http://localhost:4000"
+  server_URL = "https://backend-aua9.onrender.com"
   http = inject(HttpClient)
 
   // add Product
